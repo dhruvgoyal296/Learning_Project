@@ -2,6 +2,7 @@ package com.ProductService.ProductService.Controller;
 
 import com.ProductService.ProductService.Entity.JwtRequest;
 import com.ProductService.ProductService.Entity.JwtResponse;
+import com.ProductService.ProductService.Entity.SignUpRequest;
 import com.ProductService.ProductService.Service.UserService;
 import com.ProductService.ProductService.Utility.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,11 @@ public class AuthController {
         UserDetails userDetails = userService.loadUserByUsername(request.getUsername());
         String token = jwtUtil.generateToken(userDetails.getUsername());
         return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<String> signup (@RequestBody SignUpRequest request) {
+        userService.registerUser(request);
+        return ResponseEntity.ok("User Registered Successfully");
     }
 }

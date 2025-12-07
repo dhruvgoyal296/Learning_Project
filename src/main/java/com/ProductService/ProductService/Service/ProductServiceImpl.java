@@ -4,6 +4,8 @@ import com.ProductService.ProductService.Entity.Product;
 import com.ProductService.ProductService.exceptions.InsufficientStockException;
 import com.ProductService.ProductService.repository.ProductRepository;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +22,17 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductRepository productRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+
     @Override
     @Transactional
     public ResponseEntity<Product> addProduct(Product product) {
+        logger.debug("Entering addProduct method with product: {}", product.getName());
         Product p = productRepository.save(product);
         System.out.println("Before the flust method : " + p.getId());
         productRepository.flush();
         System.out.println("After the flush method : " + p.getId());
+        logger.debug("Product added with ID: {}", p.getId());
         return ResponseEntity.ok(p);
     }
 

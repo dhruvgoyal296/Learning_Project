@@ -33,6 +33,9 @@ public class UserService implements UserDetailsService {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already exists");
+        }
         User newUser = new User();
         String passwordEncoder1 = passwordEncoder.encode(request.getPassword());
         newUser.setUsername(request.getUsername());

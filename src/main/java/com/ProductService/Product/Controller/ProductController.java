@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -38,5 +40,10 @@ public class ProductController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable Long id) {
         return productService.deleteProduct(id);
+    }
+
+    @GetMapping("/all" )
+    public ResponseEntity<List<Product>> getAllProducts() {
+        return productService.getAllProducts();
     }
 }

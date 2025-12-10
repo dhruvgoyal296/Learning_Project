@@ -1,4 +1,4 @@
-package com.ProductService.Utility;
+package com.ProductService.Product.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

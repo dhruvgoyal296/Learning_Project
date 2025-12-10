@@ -5,7 +5,7 @@ import com.ProductService.Product.DTO.JwtResponse;
 import com.ProductService.Product.DTO.SignUpRequest;
 import com.ProductService.Product.Entity.User;
 import com.ProductService.Product.Service.UserService;
-import com.ProductService.Utility.JwtUtil;
+import com.ProductService.Product.security.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
